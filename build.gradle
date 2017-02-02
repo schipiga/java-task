@@ -1,0 +1,30 @@
+plugins {
+    id 'com.github.ben-manes.versions' version '0.13.0'
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.22',
+            'commons-lang:commons-lang:2.6'
+
+    runtime 'org.slf4j:slf4j-log4j12:1.7.22',
+            'log4j:log4j:1.2.17'
+
+    testCompile 'junit:junit:4.12',
+            'org.mockito:mockito-core:2.7.0',
+            'org.assertj:assertj-core:3.6.2',
+            'commons-io:commons-io:2.5',
+            'org.jbehave:jbehave-core:4.0.4'
+}
