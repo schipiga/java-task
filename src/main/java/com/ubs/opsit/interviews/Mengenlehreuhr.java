@@ -36,7 +36,8 @@ public class Mengenlehreuhr implements TimeConverter {
 
         assertThat(hours).as("Invalid hours value").isLessThanOrEqualTo(24);
         assertThat(minutes).as("Invalid minutes value").isLessThan(60);
-        assertThat(seconds).as("Invalid seconds value").isLessThan(60);
+        // the scientists can add a second (23:59:60) to compensate for the slowing rotation of the Earth
+        assertThat(seconds).as("Invalid seconds value").isLessThanOrEqualTo(60);
 
         return convertTime(hours, minutes, seconds);
     }
@@ -56,6 +57,7 @@ public class Mengenlehreuhr implements TimeConverter {
         fourth = StringUtils.replace(tmplFourth, O, Y, minutes / 5);
         fifth = StringUtils.replace(tmplFifth, O, Y, minutes % 5);
 
+        // Replace Y to R because the first minutes line should contain red lines on 3, 6, 9 positions.
         fourthChars = fourth.toCharArray();
         for (int idx: replaceIndexes) {
             if (fourthChars[idx] == Y.charAt(0)) {
